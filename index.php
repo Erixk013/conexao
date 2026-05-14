@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($user && password_verify($password, $user['senha'])) {
+    if($user && $password=$user['senha']) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['tipo'] = $user ['tipo'];
         header("Location:painel.php");
